@@ -26,6 +26,7 @@ public class MongoCommentsDAO extends BasicDAO<BlogComment, String>implements Co
 	}
 
 	public List<BlogComment> getAllComments(String blogId, int offset, int pageSize, String sortOrder) {
+		System.out.println("Comments DAO getAllComments sortOrder :"+sortOrder);
 		Query<BlogComment> query = createQuery();
 		String sortingParam;
 		if(sortOrder != null && !sortOrder.trim().equals("") && sortOrder.equals("newest")) {

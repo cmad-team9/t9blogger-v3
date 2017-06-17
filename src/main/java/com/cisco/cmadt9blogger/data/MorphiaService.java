@@ -12,8 +12,8 @@ public class MorphiaService {
 	
 	public MorphiaService(){
 		 
+		//MongoClient mongoClient = new MongoClient("10.128.0.6:27017");
 		MongoClient mongoClient = new MongoClient("localhost:27017");
-		
 		//create a new morphia instance
 		this.morphia = new Morphia(); 
 		String databaseName = "blogger";
