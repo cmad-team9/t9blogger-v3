@@ -45,23 +45,23 @@ public class T9BloggerTest {
 
 	@Before
 	public void setUp() throws Exception {
-		
+
 		// Set up user
 		user = new User();
 		user.setUserId("ninut");
 		user.setPassword("ninut");
 		user.setFirstName("ninut");
-		
+
 		//Set up blog
 		blog = new Blog();
 		blog.setTitle("HELLO WORLD!(UT)");
 		blog.setDescription("HELLO ...WORLD IS NICE(UT)");
-		
+
 		//Set up comment
 		comment = new BlogComment();
 		comment.setComment("nice write (UT)");
-		
-		
+
+
 	}
 
 	@After
@@ -87,9 +87,9 @@ public class T9BloggerTest {
 			e.printStackTrace();
 			fail();
 		}
-		
+
 	}
-	
+
 	@Test
 	public void signupNewUserTest_N01() {
 		User invalidUser = new User();
@@ -98,7 +98,7 @@ public class T9BloggerTest {
 			blogger.signupNewUser(invalidUser);
 			fail("Expecting InvalidUserDetailsException");
 		} catch (InvalidUserDetailsException iude) {
-			
+
 		} catch (UserAlreadyExistsException uaee) {
 			fail();
 		} catch (BloggerException be) {
@@ -107,7 +107,7 @@ public class T9BloggerTest {
 			e.printStackTrace();
 			fail();
 		}
-		
+
 	}
 
 	@Test
@@ -187,14 +187,14 @@ public class T9BloggerTest {
 			fail();
 		}
 	}
-	
+
 	@Test
 	public void getBlogCountTest(){
 		String blogId;
 		try {
 			//get initial count
 			long initialCount = blogger.getBlogCount(null, null);
-			
+
 			blogger.addBlog(blog);
 			long count = blogger.getBlogCount(null, null);
 			assertEquals((initialCount+1), count);
@@ -210,22 +210,22 @@ public class T9BloggerTest {
 			fail();
 		}
 	}
-	
+
 	@Test
 	public void getCommentCountTest(){
 		String blogId;
 		try {
-			
+
 			blogger.addBlog(blog);
 			List<Blog> blogList = blogger.getAllBlogs(0,2,null,null);
 			blogId = blogList.get(0).getBlogId();
-			
+
 			//get initial count
 			long initialCount = blogger.getCommentCount(blogId);
 			comment.setBlogId(blogId);
 			blogger.addComment(comment);
-			
-			
+
+
 			long count = blogger.getCommentCount(blogId);
 			assertEquals((initialCount+1), count);
 			// clean up

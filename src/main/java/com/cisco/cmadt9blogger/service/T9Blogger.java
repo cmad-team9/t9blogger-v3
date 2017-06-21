@@ -30,10 +30,6 @@ import com.cisco.cmadt9blogger.data.UserDAO;
 
 public class T9Blogger implements Blogger{
 
-//	private UserDAO userDao = new JPAUserDAO();
-//	private BlogDAO blogDao = new JPABlogDAO();
-//	private CommentDAO commentDAO = new JPACommentDAO();
-	
 	private UserDAO userDao;
 	private BlogDAO blogDao;
 	private CommentDAO commentDAO;

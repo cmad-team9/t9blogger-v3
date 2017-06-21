@@ -84,7 +84,7 @@ public class BloggerController {
 	@RequireJWTToken
 	public Response addBlog(@HeaderParam("userId") String userId,Blog blog) {
 		System.out.println("BloggerController addBlog userId :"+userId);
-	//	User user = blogger.getUserDetails(userId);
+		//	User user = blogger.getUserDetails(userId);
 		System.out.println("BloggerController addBlog blog title :"+blog.getTitle());
 		blog.setUserId(userId);
 		blogger.addBlog(blog);

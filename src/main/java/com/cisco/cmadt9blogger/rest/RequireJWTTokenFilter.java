@@ -21,9 +21,6 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 @Priority(Priorities.AUTHENTICATION)
 public class RequireJWTTokenFilter implements ContainerRequestFilter {
 
-
-
-
 	public void filter(ContainerRequestContext requestContext) throws IOException {
 		// Get the HTTP Authorization header from the request
 		String authorizationHeader = requestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
