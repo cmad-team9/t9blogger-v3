@@ -8,14 +8,12 @@ import com.cisco.cmadt9blogger.api.User;
 
 public class MongoUserDAO extends BasicDAO<User, String> implements UserDAO {
 
-	
+
 	public MongoUserDAO(Class<User> entityClass, Datastore ds) {
 		super(entityClass, ds);
 	}
-	
+
 	public void createUser(User user) {
-		
-		System.out.println("MongoUserDAO createUser user:"+user);
 		System.out.println("MongoUserDAO createUser user id:"+user.getUserId());
 		save(user);
 	}
@@ -26,7 +24,7 @@ public class MongoUserDAO extends BasicDAO<User, String> implements UserDAO {
 
 	public void updateUser(User user) {
 		UpdateOperations<User> updateOptions = createUpdateOperations();
-		
+
 		if(user.getNickName() != null && user.getNickName().trim() != ""){
 			updateOptions.set("nickName",user.getNickName());
 		}

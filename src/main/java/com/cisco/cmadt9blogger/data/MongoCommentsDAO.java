@@ -14,14 +14,12 @@ public class MongoCommentsDAO extends BasicDAO<BlogComment, String>implements Co
 	public MongoCommentsDAO(Class<BlogComment> entityClass, Datastore ds) {
 		super(entityClass, ds);
 	}
-	
+
 	public void createComment(BlogComment comment) {
 		save(comment);
 	}
 
 	public BlogComment readComment(String commentId) {
-		//ObjectId objId = new ObjectId(commentId);
-		//return get(objId);
 		return get(commentId);
 	}
 
@@ -46,14 +44,12 @@ public class MongoCommentsDAO extends BasicDAO<BlogComment, String>implements Co
 	}
 
 	public void deleteComment(String commentId) {
-		//ObjectId objId = new ObjectId(commentId);
-		//deleteById(objId);
 		deleteById(commentId);
 	}
-	
+
 	public void deleteAllComments(String blogId){
 		final Query<BlogComment> blogCommentsQry = createQuery().field("blogId").equal(blogId);
-        deleteByQuery(blogCommentsQry);
+		deleteByQuery(blogCommentsQry);
 	}
 
 }

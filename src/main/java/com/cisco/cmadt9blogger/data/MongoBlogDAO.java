@@ -15,35 +15,30 @@ public class MongoBlogDAO extends BasicDAO<Blog, String> implements BlogDAO {
 	public MongoBlogDAO(Class<Blog> entityClass, Datastore ds) {
 		super(entityClass, ds);
 	}
-	
+
 	public void createBlog(Blog blog) {
 		save(blog);
 
 	}
 
 	public Blog readBlog(String blogId) {
-		//ObjectId objId = new ObjectId(blogId);
-		//return get(objId);
 		return get(blogId);
-		
+
 	}
 
 	public List<Blog> getAllBlogs(int offset, int pageSize, String searchStr, String userFilter) {
 		Query<Blog> query = createQuery();
-		System.out.println("MongoBlogDAO getAllBlogs offset :"+offset);
-		System.out.println("MongoBlogDAO getAllBlogs pageSize :"+pageSize);
-		System.out.println("MongoBlogDAO getAllBlogs searchStr :"+searchStr);
-		System.out.println("MongoBlogDAO getAllBlogs searchStr :"+searchStr);
-		System.out.println("MongoBlogDAO getAllBlogs userFilter-- :"+userFilter);
+		System.out.println("MongoBlogDAO getAllBlogs offset :"+offset+" pageSize:"+pageSize);
+		System.out.println("MongoBlogDAO getAllBlogs searchStr :"+searchStr+" userFilter:"+userFilter);
 		String sortingParam = "-postedDate";
 		if(searchStr != null && !searchStr.trim().equals(""))
 		{
-			System.out.println("MongoBlogDAO getAllBlogs createQuery TP1");
+			System.out.println("MongoBlogDAO getAllBlogs adding SearchCriteria");
 			Criteria searchCriteria = createQuery().criteria("title").containsIgnoreCase(searchStr);
 			query.and(searchCriteria);
 		}
 		if(userFilter != null  && !userFilter.trim().equals("")){
-			System.out.println("MongoBlogDAO getAllBlogs createQuery TP2");
+			System.out.println("MongoBlogDAO getAllBlogs adding UserCriteria");
 			Criteria userCriteria = createQuery().criteria("userId").equalIgnoreCase(userFilter);
 			query.and(userCriteria);
 		}
@@ -66,8 +61,6 @@ public class MongoBlogDAO extends BasicDAO<Blog, String> implements BlogDAO {
 	}
 
 	public void deleteBlog(String blogId) {
-		//ObjectId objId = new ObjectId(blogId);
-		//deleteById(objId);
 		deleteById(blogId);
 	}
 }
