@@ -8,35 +8,19 @@ import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.PrePersist;
 
 
-//import javax.persistence.Entity;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.GenerationType;
-//import javax.persistence.Id;
-//import javax.persistence.JoinColumn;
-//import javax.persistence.ManyToOne;
-//import javax.persistence.OneToOne;
-//import javax.persistence.PrePersist;
-//import javax.persistence.Temporal;
-//import javax.persistence.TemporalType;
-//import javax.validation.constraints.NotNull;
 
 @Entity
 public class BlogComment {
 
 	@Id
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String commentId = new ObjectId().toHexString();
-	//@NotNull
+
 	private String comment;
-	//@OneToOne
-	//@JoinColumn(name = "userId")
-	//@NotNull
+
 	private String commentorId;
-	//@Temporal(TemporalType.TIMESTAMP)
+
 	private Date postedDate;
-	//@ManyToOne
-	//@JoinColumn(name = "blogId")
-	//@NotNull
+
 	private String blogId;
 
 	public BlogComment() {

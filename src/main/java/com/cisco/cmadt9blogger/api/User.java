@@ -3,10 +3,7 @@ package com.cisco.cmadt9blogger.api;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
-//import javax.persistence.Entity;
-//
-//import javax.persistence.Id;
-//import javax.validation.constraints.NotNull;
+
 
 @Entity
 public class User {
