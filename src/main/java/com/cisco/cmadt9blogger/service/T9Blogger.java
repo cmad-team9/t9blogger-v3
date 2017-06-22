@@ -81,11 +81,11 @@ public class T9Blogger implements Blogger{
 	}
 
 
-	public void addBlog(Blog blog) throws InvalidBlogException,/* DuplicateBlogException, */BloggerException {
+	public String addBlog(Blog blog) throws InvalidBlogException,/* DuplicateBlogException, */BloggerException {
 		if (blog == null || !(checkStringCorrectness(blog.getTitle()) && 
 				              checkStringCorrectness(blog.getDescription())) )
 			throw new InvalidBlogException();
-		blogDao.createBlog(blog);
+		return blogDao.createBlog(blog);
 	}
 
 	public Blog getBlog(String blogId) throws BlogNotFoundException, BloggerException {

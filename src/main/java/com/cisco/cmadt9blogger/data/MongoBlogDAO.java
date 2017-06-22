@@ -3,6 +3,7 @@ package com.cisco.cmadt9blogger.data;
 import java.util.List;
 
 import org.mongodb.morphia.Datastore;
+import org.mongodb.morphia.Key;
 import org.mongodb.morphia.dao.BasicDAO;
 import org.mongodb.morphia.query.Criteria;
 import org.mongodb.morphia.query.FindOptions;
@@ -16,8 +17,10 @@ public class MongoBlogDAO extends BasicDAO<Blog, String> implements BlogDAO {
 		super(entityClass, ds);
 	}
 
-	public void createBlog(Blog blog) {
-		save(blog);
+	public String createBlog(Blog blog) {
+		Key<Blog> blogIdKey = save(blog);
+		System.out.println("***blogIdKey :"+blogIdKey.getId().toString());
+		return blogIdKey.getId().toString();
 
 	}
 

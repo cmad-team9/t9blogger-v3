@@ -9,7 +9,7 @@ public interface Blogger {
 	void updateUserProfile(User user) throws InvalidUserDetailsException,BloggerException;
 	void deleteUser(String userId)  throws UserNotFoundException,BloggerException;
 
-	void addBlog(Blog blog) throws InvalidBlogException,BloggerException;
+	String addBlog(Blog blog) throws InvalidBlogException,BloggerException;
 	List<Blog> getAllBlogs(int offset,int pageSize,String searchStr,String userFilter) throws BlogNotFoundException,BloggerException; 
 	Blog getBlog(String blogId) throws BlogNotFoundException,BloggerException;
 	long getBlogCount(String searchStr,String userFilter) throws BloggerException;

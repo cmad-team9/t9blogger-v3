@@ -35,8 +35,7 @@ import com.cisco.cmadt9blogger.service.T9Blogger;
 public class BloggerController {
 
 	private Blogger blogger = new T9Blogger();	
-	@Context
-	private UriInfo uriInfo;
+	
 
 	@POST
 	@Path("/user")
@@ -82,13 +81,16 @@ public class BloggerController {
 	@Path("/blogs")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@RequireJWTToken
-	public Response addBlog(@HeaderParam("userId") String userId,Blog blog) {
+	public Response addBlog(@HeaderParam("userId") String userId,Blog blog,@Context UriInfo uriInfo) {
 		System.out.println("BloggerController addBlog userId :"+userId);
-		//	User user = blogger.getUserDetails(userId);
 		System.out.println("BloggerController addBlog blog title :"+blog.getTitle());
 		blog.setUserId(userId);
-		blogger.addBlog(blog);
-		return Response.ok().entity(blog).build();
+		String blogId = blogger.addBlog(blog);
+		System.out.println("uriInfo uri:"+uriInfo.getRequestUri());
+		UriBuilder uriBuilder = uriInfo.getAbsolutePathBuilder();
+		uriBuilder.path(blogId);
+		System.out.println("Location Header :"+uriBuilder.build());
+	    return Response.created(uriBuilder.build()).build();
 	}
 
 	@GET
